@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6F4AE7; /* Purple */
+  --color-primary-light: #7A5AF8; /* Gradient light */
+  --color-primary-dark: #5A38D6; /* Gradient dark */
+  --color-secondary: #6b7280; /* Gray */
+  --color-dark: #111827; /* Black */
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+  -webkit-text-fill-color: #000000;
+  transition: background-color 9999s ease-in-out 0s;
+}
