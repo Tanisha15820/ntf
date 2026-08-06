@@ -4,7 +4,9 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import RequirementPopup from "./RequirementPopup";
 
 const requirementData = [
   {
@@ -55,6 +57,7 @@ const RequirementTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [search, setSearch] = useState("");
+  const [open, setOpen] = useState(false);
 
   const handleChangePage = (_, newPage) => {
     setPage(newPage);
@@ -90,6 +93,16 @@ const RequirementTable = () => {
             </p>
           </div>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 transition"
+        >
+          <AddCircleOutlineOutlinedIcon sx={{ fontSize: 18 }} />
+          Add Requirement
+        </button>
+        <RequirementPopup open={open} onClose={() => setOpen(false)} />
       </div>
 
       {/* Table */}
@@ -185,7 +198,7 @@ const RequirementTable = () => {
                       rowIdx % 2 === 1 ? "bg-gray-50/50" : "bg-white"
                     }`}
                   >
-                    <td className="px-4 py-3 text-xs font-semibold text-gray-900 border-b border-r border-gray-100">
+                    <td className="px-4 py-3 text-xs font-medium text-gray-700 border-b border-r border-gray-100">
                       {row.code}
                     </td>
                     <td className="px-4 py-3 text-xs text-gray-700 border-b border-r border-gray-100">
@@ -274,6 +287,8 @@ const RequirementTable = () => {
           }}
         />
       </div>
+
+      <RequirementPopup open={open} onClose={() => setOpen(false)} />
     </div>
   );
 };

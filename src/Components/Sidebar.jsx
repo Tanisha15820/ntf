@@ -124,7 +124,7 @@ const Sidebar = ({
                 </div>
 
                 {!collapsed && (
-                  <span className="font-medium text-sm">{item.name}</span>
+                  <span className="font-medium text-xs">{item.name}</span>
                 )}
               </button>
             );
