@@ -1,7 +1,5 @@
-import React from "react";
+import { useState } from "react";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -141,10 +139,10 @@ const options = {
 };
 
 const Attrition = () => {
-  const [department, setDepartment] = React.useState("");
-  const [subDepartment, setSubDepartment] = React.useState("");
-  const [line, setLine] = React.useState("");
-  const [shift, setShift] = React.useState("");
+  const [department, setDepartment] = useState("");
+  const [subDepartment, setSubDepartment] = useState("");
+  const [line, setLine] = useState("");
+  const [shift, setShift] = useState("");
 
   return (
     <div className="mt-6">

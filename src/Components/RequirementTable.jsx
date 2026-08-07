@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TablePagination, IconButton, Tooltip } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import RequirementPopup from "./RequirementPopup";
 
 const requirementData = [
@@ -56,7 +55,7 @@ const approvalStyles = {
 const RequirementTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [search, setSearch] = useState("");
+  const [search] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleChangePage = (_, newPage) => {
@@ -260,7 +259,6 @@ const RequirementTable = () => {
           </tbody>
         </table>
 
-        {/* Pagination */}
         <TablePagination
           component="div"
           count={filteredData.length}
@@ -292,12 +290,5 @@ const RequirementTable = () => {
     </div>
   );
 };
-
-const LegendChip = ({ label }) => (
-  <div className="flex items-center gap-1.5">
-    <span className="h-2 w-2 rounded-sm bg-primary-light" />
-    <span className="text-[11px] text-gray-500">{label}</span>
-  </div>
-);
 
 export default RequirementTable;

@@ -1,4 +1,3 @@
-import React from "react";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 
 const Navbar = ({ activeMenu }) => {

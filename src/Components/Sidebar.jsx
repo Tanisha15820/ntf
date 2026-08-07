@@ -1,11 +1,7 @@
-import React from "react";
+import { useState } from "react";
 import logo from "../assets/images/NTF_logo_black.png";
-import { Menu, X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
-import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
-import ImportContactsIcon from "@mui/icons-material/ImportContacts";
-import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Sidebar = ({
   mobileOpen,
@@ -14,30 +10,19 @@ const Sidebar = ({
   setCollapsed,
   activeMenu,
   setActiveMenu,
+  menuItems = [],
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const menuItems = [
-    {
-      name: "Dashboard",
-      icon: <DashboardOutlinedIcon size={20} />,
-      path: "/dashboard",
-    },
-    {
-      name: "Attendance",
-      icon: <GroupOutlinedIcon size={20} />,
-      path: "/attendance",
-    },
-    {
-      name: "Report Management",
-      icon: <ImportContactsIcon size={20} />,
-    },
-    {
-      name: "Requirement",
-      icon: <AssignmentOutlinedIcon size={20} />,
-      path: "/requirement",
-    },
-  ];
+  const [openMenus, setOpenMenus] = useState({});
+
+  const toggleSubmenu = (menuName) => {
+    setOpenMenus((prev) => ({
+      ...prev,
+      [menuName]: !prev[menuName],
+    }));
+  };
 
   return (
     <>
@@ -52,19 +37,11 @@ const Sidebar = ({
       )}
 
       <aside
-        className={`
-          relative lg:relative
-          top-0 left-0
-          z-50
-          h-screen
-          bg-white
-          border-r border-gray-200
-          shadow-lg
-          transition-all duration-300
-          ${collapsed ? "w-20" : "w-60"}
-          translate-x-0
-        `}
+        className={`relative h-screen bg-white border-r border-gray-200 shadow-lg transition-all duration-300 ${
+          collapsed ? "w-20" : "w-64"
+        }`}
       >
+        {/* Logo */}
         <div
           className={`h-16 border-b border-gray-100 flex items-center ${
             collapsed ? "justify-center px-2" : "justify-between px-4"
@@ -85,48 +62,91 @@ const Sidebar = ({
           </button>
         </div>
 
-        <div className="mt-6 px-3">
+        {/* Menu */}
+        <div className="mt-5 px-3 overflow-y-auto">
           {menuItems.map((item) => {
-            const active = activeMenu === item.name;
+            const hasSubmenu = item.submenu?.length > 0;
+
+            const active =
+              activeMenu === item.name ||
+              item.submenu?.some((sub) => location.pathname === sub.path);
 
             return (
-              <button
-                key={item.name}
-                onClick={() => {
-                  setActiveMenu(item.name);
+              <div key={item.name} className="mb-2">
+                {/* Main Menu */}
+                <button
+                  onClick={() => {
+                    if (hasSubmenu) {
+                      toggleSubmenu(item.name);
+                    } else {
+                      setActiveMenu(item.name);
 
-                  if (item.path) {
-                    navigate(item.path);
-                  }
+                      if (item.path) navigate(item.path);
 
-                  if (window.innerWidth < 1024) {
-                    setCollapsed(true);
-                  }
-                }}
-                className={`w-full flex items-center rounded-lg py-3 mb-2 transition-all
-                  ${collapsed ? "justify-center" : "justify-start gap-3 px-3"}
+                      if (window.innerWidth < 1024) {
+                        setCollapsed(true);
+                      }
+                    }
+                  }}
+                  className={`w-full flex items-center rounded-xl py-3 transition-all
+                  ${collapsed ? "justify-center" : "justify-between px-3"}
                   ${
                     active
                       ? "bg-primary/10 text-primary"
                       : "text-gray-600 hover:bg-primary/10 hover:text-primary"
-                  }
-                `}
-              >
-                <div
-                  className={`flex h-9 w-9 items-center justify-center rounded-md
-                    ${
-                      active
-                        ? "bg-primary/20"
-                        : "bg-gray-100 group-hover:bg-white"
-                    }`}
+                  }`}
                 >
-                  {item.icon}
-                </div>
+                  <div
+                    className={`flex items-center ${collapsed ? "" : "gap-3"}`}
+                  >
+                    <div
+                      className={`flex h-9 w-9 items-center justify-center rounded-lg
+                      ${active ? "bg-primary/20" : "bg-gray-100"}`}
+                    >
+                      {item.icon}
+                    </div>
 
-                {!collapsed && (
-                  <span className="font-medium text-xs">{item.name}</span>
+                    {!collapsed && (
+                      <span className="text-sm font-medium">{item.name}</span>
+                    )}
+                  </div>
+
+                  {!collapsed &&
+                    hasSubmenu &&
+                    (openMenus[item.name] ? (
+                      <ChevronDown size={18} />
+                    ) : (
+                      <ChevronRight size={18} />
+                    ))}
+                </button>
+
+                {/* Submenu */}
+                {!collapsed && hasSubmenu && openMenus[item.name] && (
+                  <div className="ml-12 mt-2 space-y-1">
+                    {item.submenu.map((sub) => (
+                      <button
+                        key={sub.name}
+                        onClick={() => {
+                          setActiveMenu(sub.name);
+                          navigate(sub.path);
+
+                          if (window.innerWidth < 1024) {
+                            setCollapsed(true);
+                          }
+                        }}
+                        className={`w-full text-left rounded-lg px-3 py-2 text-sm transition
+                          ${
+                            location.pathname === sub.path
+                              ? "bg-primary text-white"
+                              : "text-gray-600 hover:bg-primary/10 hover:text-primary"
+                          }`}
+                      >
+                        {sub.name}
+                      </button>
+                    ))}
+                  </div>
                 )}
-              </button>
+              </div>
             );
           })}
         </div>

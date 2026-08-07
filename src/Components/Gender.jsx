@@ -1,4 +1,3 @@
-import React from "react";
 import GenderDistribution from "./GenderDistribution";
 import GenderAttendance from "./GenderAttendance";
 

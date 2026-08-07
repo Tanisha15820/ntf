@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Sidebar from "../Components/Sidebar";
 import Navbar from "../Components/Navbar";
 import AttendanceTable from "../Components/AttendanceTable";
 import Filters from "../Components/Filters";
+import { dashboardMenus } from "../Data/DashboardMenu";
 
 const Attendance = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -12,6 +13,7 @@ const Attendance = () => {
   return (
     <div className="flex h-screen bg-[#F5F7FB] overflow-hidden">
       <Sidebar
+        menuItems={dashboardMenus}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
         collapsed={collapsed}

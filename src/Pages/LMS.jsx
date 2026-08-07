@@ -5,11 +5,10 @@ import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
 import SignalCellularAltRoundedIcon from "@mui/icons-material/SignalCellularAltRounded";
 import Sidebar from "../Components/Sidebar";
 import Navbar from "../Components/Navbar";
-import DailyManpower from "../Components/DailyManpower";
 import KPICards from "../Components/KPICards";
-import Attrition from "../Components/Attrition";
-import Gender from "../Components/Gender";
-import { dashboardMenus } from "../Data/DashboardMenu";
+import { lmsMenus } from "../Data/LMSMenu";
+import Filters from "../Components/Filters";
+import QuestionPaperTable from "../Components/QuestionPaperTable";
 
 const kpiData = [
   {
@@ -38,15 +37,15 @@ const kpiData = [
   },
 ];
 
-const Dashboard = () => {
+const LMS = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [activeMenu, setActiveMenu] = useState("Dashboard");
+  const [activeMenu, setActiveMenu] = useState("LMS");
 
   return (
     <div className="flex h-screen bg-[#F5F7FB] overflow-hidden">
       <Sidebar
-        menuItems={dashboardMenus}
+        menuItems={lmsMenus}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
         collapsed={collapsed}
@@ -60,15 +59,16 @@ const Dashboard = () => {
           <Navbar setMobileOpen={setMobileOpen} activeMenu={activeMenu} />
         </div>
 
-        <main className="flex-1 overflow-y-auto px-6 pt-4 pb-6">
+        <main className="flex-1 overflow-y-auto px-6 pt-4 pb-6 space-y-5">
+          <Filters />
+
           <KPICards data={kpiData} />
-          <DailyManpower />
-          <Attrition />
-          <Gender />
+
+          <QuestionPaperTable />
         </main>
       </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default LMS;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import PendingActionsOutlinedIcon from "@mui/icons-material/PendingActionsOutlined";
@@ -8,6 +8,7 @@ import Navbar from "../Components/Navbar";
 import Filters from "../Components/Filters";
 import KPICards from "../Components/KPICards";
 import RequirementTable from "../Components/RequirementTable";
+import { dashboardMenus } from "../Data/DashboardMenu";
 
 const kpiData = [
   {
@@ -43,8 +44,8 @@ const Requirement = () => {
 
   return (
     <div className="flex h-screen bg-[#F5F7FB] overflow-hidden">
-      {/* Sidebar */}
       <Sidebar
+        menuItems={dashboardMenus}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
         collapsed={collapsed}
@@ -53,22 +54,14 @@ const Requirement = () => {
         setActiveMenu={setActiveMenu}
       />
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Navbar */}
         <div className="sticky top-0 z-30 bg-white shadow-sm">
           <Navbar setMobileOpen={setMobileOpen} activeMenu={activeMenu} />
         </div>
 
-        {/* Page Content */}
         <main className="flex-1 overflow-y-auto p-6">
-          {/* Filters */}
           <Filters />
-
-          {/* KPI Cards */}
           <KPICards data={kpiData} />
-
-          {/* Table */}
           <RequirementTable />
         </main>
       </div>

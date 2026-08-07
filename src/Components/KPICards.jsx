@@ -1,5 +1,3 @@
-import React from "react";
-
 const colorClasses = {
   blue: {
     bg: "bg-primary/10",

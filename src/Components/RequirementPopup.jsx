@@ -1,30 +1,18 @@
-import React, { useState } from "react";
 import {
   X,
   ClipboardList,
   Building2,
   Bell,
   Plus,
-  Trash2,
   Save,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 
 const RequirementPopup = ({ open, onClose }) => {
-  const [recipients, setRecipients] = useState([
-    {
-      name: "Rahul Sharma",
-      email: "rahul@company.com",
-    },
-  ]);
-
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-center items-center p-5">
       <div className="bg-white rounded-2xl border border-gray-200 shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        {/* Header */}
         <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-gray-100 shrink-0">
           <div className="flex items-center gap-3">
             <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-primary-light to-primary-dark flex items-center justify-center shadow-sm">
@@ -50,8 +38,6 @@ const RequirementPopup = ({ open, onClose }) => {
         </div>
 
         <div className="p-4 space-y-4 overflow-y-auto flex-1">
-          {/* SECTION DETAILS */}
-
           <div>
             <div className="flex items-center gap-2 mb-2.5">
               <div className="bg-primary/10 p-1.5 rounded-lg">
@@ -107,8 +93,6 @@ const RequirementPopup = ({ open, onClose }) => {
             </div>
           </div>
 
-          {/* Requirement */}
-
           <div>
             <div className="flex justify-between items-center mb-2.5">
               <div className="flex items-center gap-2">
@@ -119,12 +103,6 @@ const RequirementPopup = ({ open, onClose }) => {
                 <h3 className="uppercase text-xs font-semibold text-primary">
                   Requirement Details
                 </h3>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-primary font-semibold text-sm">
-                <ChevronLeft className="cursor-pointer" size={16} />
-                August 2025
-                <ChevronRight className="cursor-pointer" size={16} />
               </div>
             </div>
 
@@ -144,8 +122,6 @@ const RequirementPopup = ({ open, onClose }) => {
               ))}
             </div>
           </div>
-
-          {/* Notification */}
 
           <div>
             <div className="flex items-center gap-2 mb-2.5">
@@ -182,37 +158,6 @@ const RequirementPopup = ({ open, onClose }) => {
                   <Plus size={15} />
                   Add Recipient
                 </button>
-              </div>
-            </div>
-
-            <div className="mt-3">
-              <h4 className="font-semibold text-sm mb-2">
-                Recipients ({recipients.length})
-              </h4>
-
-              <div className="border rounded-xl overflow-hidden">
-                {recipients.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex justify-between items-center px-3 py-2 border-b last:border-0"
-                  >
-                    <div className="flex gap-2.5 items-center">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center font-semibold text-primary text-sm">
-                        {item.name.charAt(0)}
-                      </div>
-
-                      <div>
-                        <p className="font-semibold text-sm">{item.name}</p>
-
-                        <p className="text-gray-500 text-xs">{item.email}</p>
-                      </div>
-                    </div>
-
-                    <button className="w-7 h-7 rounded-lg bg-red-50 flex items-center justify-center text-red-500">
-                      <Trash2 size={14} />
-                    </button>
-                  </div>
-                ))}
               </div>
             </div>
           </div>

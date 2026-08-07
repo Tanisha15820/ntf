@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   TablePagination,
   IconButton,
   Tooltip,
   Menu,
   MenuItem,
-  Select,
-  FormControl,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 const rows = [
   {
@@ -57,10 +54,10 @@ const statusStyles = {
 const AttendanceTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [search, setSearch] = useState("");
+  const [search] = useState("");
   const [menuAnchor, setMenuAnchor] = useState(null);
-  const [statusFilter, setStatusFilter] = useState("");
-  const [shiftFilter, setShiftFilter] = useState("");
+  const [statusFilter] = useState("");
+  const [shiftFilter] = useState("");
 
   const handleChangePage = (_, newPage) => {
     setPage(newPage);
@@ -88,18 +85,8 @@ const AttendanceTable = () => {
       (shiftFilter === "" || row.shift === shiftFilter),
   );
 
-  const counts = rows.reduce(
-    (acc, row) => {
-      if (row.status === "Active") acc.active += 1;
-      else if (row.status === "Inactive") acc.inactive += 1;
-      return acc;
-    },
-    { active: 0, inactive: 0 },
-  );
-
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-      {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 px-5 py-4 border-b border-gray-100">
         <div className="flex items-center gap-3">
           <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-primary-light to-primary-dark flex items-center justify-center shadow-sm">
@@ -113,53 +100,8 @@ const AttendanceTable = () => {
             <p className="text-xs text-gray-500">Employee attendance details</p>
           </div>
         </div>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <FormControl size="small" sx={{ minWidth: 140 }}>
-            <Select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              displayEmpty
-              sx={{
-                fontSize: 12,
-                height: 36,
-                borderRadius: "8px",
-                ".MuiSelect-select": { py: 0.9 },
-              }}
-            >
-              <MenuItem value="">
-                <em>All Status</em>
-              </MenuItem>
-              <MenuItem value="Active">Active</MenuItem>
-              <MenuItem value="Inactive">Inactive</MenuItem>
-            </Select>
-          </FormControl>
-
-          <FormControl size="small" sx={{ minWidth: 140 }}>
-            <Select
-              value={shiftFilter}
-              onChange={(e) => setShiftFilter(e.target.value)}
-              displayEmpty
-              sx={{
-                fontSize: 12,
-                height: 36,
-                borderRadius: "8px",
-                ".MuiSelect-select": { py: 0.9 },
-              }}
-            >
-              <MenuItem value="">
-                <em>All Shifts</em>
-              </MenuItem>
-              <MenuItem value="General">General</MenuItem>
-              <MenuItem value="Shift A">Shift A</MenuItem>
-              <MenuItem value="Shift B">Shift B</MenuItem>
-              <MenuItem value="Shift C">Shift C</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1100px] border-collapse">
           <thead>
@@ -354,15 +296,5 @@ const AttendanceTable = () => {
     </div>
   );
 };
-
-const SummaryChip = ({ color, label, value }) => (
-  <div className="flex items-center gap-1.5">
-    <span className={`h-2 w-2 rounded-full ${color}`} />
-    <span className="text-[11px] text-gray-500">{label}</span>
-    <span className="text-xs font-bold text-gray-800 tabular-nums">
-      {value}
-    </span>
-  </div>
-);
 
 export default AttendanceTable;
