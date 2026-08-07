@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { TablePagination, IconButton, Tooltip } from "@mui/material";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 const rows = [
   {
@@ -16,6 +13,33 @@ const rows = [
     duration: "60 mins",
     status: "Published",
     updated: "12 May 2025, 11:30 AM",
+  },
+  {
+    id: 2,
+    title: "L1",
+    questions: 40,
+    marks: 80,
+    duration: "50 mins",
+    status: "Draft",
+    updated: "13 May 2025, 09:45 AM",
+  },
+  {
+    id: 3,
+    title: "L2",
+    questions: 60,
+    marks: 120,
+    duration: "75 mins",
+    status: "Published",
+    updated: "15 May 2025, 02:15 PM",
+  },
+  {
+    id: 4,
+    title: "L3",
+    questions: 75,
+    marks: 150,
+    duration: "90 mins",
+    status: "Published",
+    updated: "18 May 2025, 04:30 PM",
   },
 ];
 
@@ -61,14 +85,6 @@ const QuestionPaperTable = () => {
             </p>
           </div>
         </div>
-
-        <button
-          type="button"
-          className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 transition"
-        >
-          <AddCircleOutlineOutlinedIcon sx={{ fontSize: 18 }} />
-          Add Question Paper
-        </button>
       </div>
 
       {/* Table */}
@@ -111,23 +127,23 @@ const QuestionPaperTable = () => {
                   >
                     <td className="px-4 py-3 border-b border-r border-gray-100">
                       <div className="min-w-0">
-                        <p className="text-xs font-semibold text-gray-800 truncate">
+                        <p className="text-xs font-medium text-gray-500 truncate">
                           {row.title}
                         </p>
                       </div>
                     </td>
 
-                    <td className="px-4 py-3 text-center text-xs font-medium text-gray-700 border-b border-r border-gray-100">
+                    <td className="px-4 py-3 text-xs text-gray-500 border-b border-r border-gray-100">
                       {row.questions}
                     </td>
-                    <td className="px-4 py-3 text-center text-xs font-medium text-gray-700 border-b border-r border-gray-100">
+                    <td className="px-4 py-3 text-xs text-gray-500 border-b border-r border-gray-100">
                       {row.marks}
                     </td>
-                    <td className="px-4 py-3 text-center text-xs text-gray-500 border-b border-r border-gray-100">
+                    <td className="px-4 py-3 text-xs text-gray-500 border-b border-r border-gray-100">
                       {row.duration}
                     </td>
 
-                    <td className="px-4 py-3 text-center border-b border-r border-gray-100">
+                    <td className="px-4 py-3 text-left border-b border-r border-gray-100">
                       <span
                         className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ring-1 ring-inset ${status.badge}`}
                       >

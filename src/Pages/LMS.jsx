@@ -12,26 +12,26 @@ import QuestionPaperTable from "../Components/QuestionPaperTable";
 
 const kpiData = [
   {
-    title: "Total Requirement",
-    value: 452,
+    title: "L0 Pages",
+    value: 10,
     color: "blue",
     icon: <PeopleAltOutlinedIcon sx={{ fontSize: 24 }} />,
   },
   {
-    title: "Total Present",
-    value: 318,
+    title: "L1 Pages",
+    value: 3,
     color: "green",
     icon: <PersonOutlinedIcon sx={{ fontSize: 24 }} />,
   },
   {
-    title: "Total Manpower",
-    value: 670,
+    title: "L2 Pages",
+    value: 6,
     color: "red",
     icon: <GroupsOutlinedIcon sx={{ fontSize: 24 }} />,
   },
   {
-    title: "Attendance %",
-    value: "85.2%",
+    title: "L4 Pages",
+    value: "8",
     color: "purple",
     icon: <SignalCellularAltRoundedIcon sx={{ fontSize: 24 }} />,
   },

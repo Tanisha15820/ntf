@@ -13,8 +13,8 @@ import { dashboardMenus } from "../Data/DashboardMenu";
 
 const kpiData = [
   {
-    title: "Total Requirement",
-    value: 452,
+    title: "L0 Pages",
+    value: 10,
     color: "blue",
     icon: <PeopleAltOutlinedIcon sx={{ fontSize: 24 }} />,
   },

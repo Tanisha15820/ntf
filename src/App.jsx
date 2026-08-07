@@ -6,6 +6,7 @@ import Dashboard from "./Pages/Dashboard";
 import Attendance from "./Pages/Attendance";
 import Requirement from "./Pages/Requirement";
 import LMS from "./Pages/LMS";
+import L0 from "./Pages/L0";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/attendance" element={<Attendance />} />
         <Route path="/requirement" element={<Requirement />} />
         <Route path="/lms" element={<LMS />} />
+        <Route path="/lms/l0" element={<L0 />} />
       </Routes>
     </BrowserRouter>
   );
