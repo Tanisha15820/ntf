@@ -1,6 +1,4 @@
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
-import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
-import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
 
 export const lmsMenus = [
   {

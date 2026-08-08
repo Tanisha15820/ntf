@@ -7,6 +7,7 @@ import Attendance from "./Pages/Attendance";
 import Requirement from "./Pages/Requirement";
 import LMS from "./Pages/LMS";
 import L0 from "./Pages/L0";
+import L0Preview from "./Pages/L0Preview";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/requirement" element={<Requirement />} />
         <Route path="/lms" element={<LMS />} />
         <Route path="/lms/l0" element={<L0 />} />
+        <Route path="/lms/l0/preview" element={<L0Preview />} />
       </Routes>
     </BrowserRouter>
   );
